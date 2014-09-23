@@ -1,0 +1,70 @@
+using System;
+
+//You are given a number n and 2*n numbers. Write a program to check whether the sum
+//of the odd numbers is equal to the sum of the even n numbers. The first number is
+//considered odd, the next even, the next odd again, etc. Print as result “Yes” or “No”.
+//In case of yes, print also the sum. In case of no, print also the difference between
+//the odd and the even sums.
+//Input
+//The input data should be read from the console.
+//The first line holds an integer n – the count of numbers.
+//Each of the next 2*n lines holds exactly one number.
+//The input data will always be valid and in the format described. There is no need to check it explicitly.
+//Output
+//The output must be printed on the console.
+//Print “Yes, sum=S” where S is the sum of the odd n numbers in case of the sum of the odd n numbers is
+//equal to the sum of the even n numbers.
+//Otherwise print “No, diff=D” where D is the difference between the sum of the odd n numbers and the 
+//sum of the even n numbers. D should always be a positive number.
+
+    class OddEvenSum
+    {
+        static void Main()
+        {
+            int countOfNumbers = int.Parse(Console.ReadLine());
+            int length = countOfNumbers * 2 + 1;
+            int[] numbers = new int[length];
+            for (int i = 1; i < length; i++)
+            {
+                numbers[i] = int.Parse(Console.ReadLine()); 
+            }
+
+            int evenSum = 0;
+            for (int i = 2; i < length; i += 2)
+            {
+                evenSum += numbers[i]; 
+            }
+
+            int oddSum = 0;
+            for (int i = 1; i < length; i+=2)
+            {
+                oddSum += numbers[i];
+            }
+            int diff = 0;
+            if (evenSum > oddSum)
+            {
+                diff = evenSum - oddSum;
+                Console.WriteLine("No, diff={0}",diff);
+            }
+            else if (oddSum > evenSum)
+            {
+                diff = oddSum - evenSum;
+                Console.WriteLine("No, diff={0}",diff);
+            }
+            else
+            {
+                Console.WriteLine("Yes, sum={0}",oddSum);
+            }
+        }
+    }
+//Example
+//Input       Output            Input           Output
+//4           Yes, sum=5        3               No, diff=1
+//3                             1
+//4                             2
+//-1                            3
+//-1                            1
+//2                             2
+//1                             2
+//1
+//1
